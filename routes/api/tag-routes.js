@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   // find all tags
   // be sure to include its associated Product data
   Tag.findAll({
-    include:[ProductTag],
+    include:[Product],
   })
   .then((tag) => res.json(tag))
   .catch((err) => res.status(500).json(err))
@@ -20,10 +20,10 @@ Tag.findOne({
   where:{
     id:req.params.id,
   },
-  include:[ProductTag]
+  include:[Product]
 })
   .then((tag) => res.json(tag))
-  .catch((err) => res.status(400).json(err))
+  .catch((err) => res.status(500).json(err))
 });
 
 router.post('/', (req, res) => {
